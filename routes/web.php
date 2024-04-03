@@ -2,11 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Watching Laravel Blade Template - II -- 24.00
+// Watching Laravel Blade Template - III 
 
 
 Route::get('/', function () {
     return view('home');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
 });
 
 // Route::get('/', function () {
