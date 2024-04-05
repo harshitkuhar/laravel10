@@ -2,16 +2,36 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Watching Laravel Blade Template - III 
+function getUsers(){
+    return [
+        1 => ['name'=>'Harshit', 'name'=>'Harshit', 'city'=>'MBD'],
+        12 => ['name'=>'Satyam', 'city'=>'Bijnor'],
+        23 => ['name'=>'Deepak', 'city'=>'Delhi'],
+    ];
+}
 
 
 Route::get('/', function () {
     return view('home');
 });
 
+
+Route::get('/users', function () {
+    $names = getUsers();
+    return view('users', ['user'=>$names]);
+});
+
+Route::get('/user/{id}', function ($id) {
+    $allusers = getUsers();
+    $user = $allusers[$id];
+    return view('user', ['id'=>$user]);
+})->name('viewUser');
+
+
 Route::get('/about', function () {
     return view('about');
 });
+
 
 Route::get('/contact', function () {
     return view('contact');
