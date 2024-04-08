@@ -1,41 +1,44 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\pageController;
 
-function getUsers(){
-    return [
-        1 => ['name'=>'Harshit', 'name'=>'Harshit', 'city'=>'MBD'],
-        12 => ['name'=>'Satyam', 'city'=>'Bijnor'],
-        23 => ['name'=>'Deepak', 'city'=>'Delhi'],
-    ];
-}
+// function getUsers(){
+//     return [
+//         1 => ['name'=>'Harshit', 'name'=>'Harshit', 'city'=>'MBD'],
+//         12 => ['name'=>'Satyam', 'city'=>'Bijnor'],
+//         23 => ['name'=>'Deepak', 'city'=>'Delhi'],
+//     ];
+// }
 
 
 Route::get('/', function () {
     return view('home');
 });
 
-
-Route::get('/users', function () {
-    $names = getUsers();
-    return view('users', ['user'=>$names]);
-});
-
-Route::get('/user/{id}', function ($id) {
-    $allusers = getUsers();
-    $user = $allusers[$id];
-    return view('user', ['id'=>$user]);
-})->name('viewUser');
+Route::get('/', [pageController::class, 'showUser']);
 
 
-Route::get('/about', function () {
-    return view('about');
-});
+// Route::get('/users', function () {
+//     $names = getUsers();
+//     return view('users', ['user'=>$names]);
+// });
+
+// Route::get('/user/{id}', function ($id) {
+//     $allusers = getUsers();
+//     $user = $allusers[$id];
+//     return view('user', ['id'=>$user]);
+// })->name('viewUser');
 
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+// Route::get('/about', function () {
+//     return view('about');
+// });
+
+
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
 
 // Route::get('/', function () {
 //     return view('home');
@@ -47,11 +50,11 @@ Route::get('/contact', function () {
 //     Route::get('/about', function () {
 //         return "<h1>About Page</h1>";
 //     });
-    
+
 //     Route::get('/post', function () {
 //         return "<h1>Post Page</h1>";
 //     });
-    
+
 //     Route::get('/post/firstpost', function () {
 //         return "<h1>First Post Page</h1>";
 //     });
@@ -87,7 +90,7 @@ Route::get('/contact', function () {
 //     }else{
 //         return "<p>No ID Found</p>";
 //     }
-    
+
 // });
 
 
@@ -99,7 +102,7 @@ Route::get('/contact', function () {
 //     }else{
 //         return "<p>No ID Found</p>";
 //     }
-    
+
 // })->whereNumber("id");
 
 
@@ -111,11 +114,7 @@ Route::get('/contact', function () {
 //     }else{
 //         return "<p>No ID Found</p>";
 //     }
-    
+
 // })->whereIn("id", ["harsh", "song", "painting"]);
 
 
-
-
-
-//  7th video completed successfully

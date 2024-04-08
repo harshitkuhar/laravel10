@@ -1,4 +1,7 @@
-@extends('layouts.mainlayout');
+<h1>Home Page</h1>
+
+
+{{-- @extends('layouts.mainlayout');
 
 @section('content')
 
@@ -8,4 +11,4 @@
     <h2>Test</h2>
 </div>
     
-@endsection
+@endsection --}}
