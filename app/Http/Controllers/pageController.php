@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 
 class pageController extends Controller
 {
-    public function showUser(){
-        return "<h1>Welcome to Controller</h1>";
+    public function showHome(){
+        return view('home');
+    }
+
+    public function showUser($id){
+        return view('user', ['id' => $id]);
     }
 }

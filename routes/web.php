@@ -12,11 +12,12 @@ use App\Http\Controllers\pageController;
 // }
 
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
-Route::get('/', [pageController::class, 'showUser']);
+Route::get('/', [pageController::class, 'showHome'])->name('home');
+Route::get('/user/{id}', [pageController::class, 'showUser'])->name('user');
 
 
 // Route::get('/users', function () {
