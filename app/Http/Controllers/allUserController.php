@@ -16,4 +16,50 @@ class allUserController extends Controller
         $user = DB::table('all_users')->where('id', $id)->get();
         return view('user', ['singleuser' => $user]);
     }
+
+    public function addUser(Request $req){
+        $user = DB::table('all_users')
+                    ->insertOrIgnore([
+                        'name' => $req->user_name,
+                        'email' => $req->user_email,
+                        'age' => $req->user_age,
+                        'city' => $req->user_city,
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ]);
+        if($user) {
+            return redirect()->route('showusers');
+        }else{
+            echo "Email ID already Exist";
+        }
+    }
+
+    public function deleteUser($id){
+        $user = DB::table('all_users')
+                    ->where('id', $id)
+                    ->delete();
+        if($user) {
+            return redirect()->route('showusers');
+        }
+    }
+
+    public function getUserData($id){
+        $userData = DB::table('all_users')->find($id);
+        //return $userData;
+        return view('updateuser', ['userdata' => $userData]);
+    }
+
+    public function updateuser(Request $req, $id){
+        $udateuser = DB::table('all_users')
+                    ->where('id', $id)
+                    ->update([
+                        'name' => $req->user_name,
+                        'email' => $req->user_email,
+                        'age' => $req->user_age,
+                        'city' => $req->user_city
+                    ]);
+        if($udateuser) {
+            return redirect()->route('showusers');
+        }
+    }
 }

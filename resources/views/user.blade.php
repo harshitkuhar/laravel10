@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h2>Single User</h2>
+                <h2 class="mt-5">Single User</h2>
                 <table class="table table-striped">
                     <thead>
                       <tr>
@@ -24,7 +24,6 @@
                       </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ( $data as $value ) --}}
                         @foreach ( $singleuser as $id => $value )
                             <tr>
                                 <th>{{$value->id}}</th>
