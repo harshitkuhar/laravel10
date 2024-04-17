@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class allUserController extends Controller
 {
     public function showAllUsers(){
-        $users = DB::table('all_users')->get();
+        $users = DB::table('all_users')->simplePaginate(2);
         return view('allusers', ['data' => $users]);
     }
 
@@ -28,9 +28,9 @@ class allUserController extends Controller
                         'updated_at' => now()
                     ]);
         if($user) {
-            return redirect()->route('showusers');
+            return redirect()->route('showusers')->with('success','User created successfully!');
         }else{
-            echo "Email ID already Exist";
+            return redirect()->route('add.user')->with('error','Email ID already exist!');
         }
     }
 
@@ -39,7 +39,7 @@ class allUserController extends Controller
                     ->where('id', $id)
                     ->delete();
         if($user) {
-            return redirect()->route('showusers');
+            return redirect()->route('showusers')->with('success', 'User deleted successfully!');
         }
     }
 
@@ -59,7 +59,7 @@ class allUserController extends Controller
                         'city' => $req->user_city
                     ]);
         if($udateuser) {
-            return redirect()->route('showusers');
+            return redirect()->route('showusers')->with('success','User updated successfully!');
         }
     }
 }

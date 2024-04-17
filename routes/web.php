@@ -5,12 +5,8 @@ use App\Http\Controllers\pageController;
 use App\Http\Controllers\allUserController;
 
 
-Route::get('/', function () {
-    return view('home');
-});
 
-
-Route::get('/allUsers', [allUserController::class, 'showAllUsers'])->name('showusers');
+Route::get('/', [allUserController::class, 'showAllUsers'])->name('showusers');
 
 Route::get('/user/{id}', [allUserController::class, 'showSingleUser'])->name('showsingleuser');
 
@@ -22,7 +18,7 @@ Route::get('/get-user-data/{id}', [allUserController::class, 'getUserData'])->na
 
 Route::post('/update-user/{id}', [allUserController::class, 'updateuser'])->name('updateuserdata');
 
-Route::view('/add-user', 'adduser');
+Route::view('/add-user', 'adduser')->name('add.user');
 
 
 

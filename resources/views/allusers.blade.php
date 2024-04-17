@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <title>All Users</title>
-</head>
-<body>
+@extends('layouts.mainlayout')
 
+@section('title')
+    All Users
+@endsection
+
+@section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -16,7 +12,7 @@
                 <a href="/add-user" class="btn btn-info my-2">Add New</a>
                 <table class="table table-striped table-bordered">
                     <thead>
-                      <tr>
+                    <tr>
                         <th scope="col">S.No.</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
@@ -25,7 +21,7 @@
                         <th scope="col">View</th>
                         <th scope="col">Update</th>
                         <th scope="col">Delete</th>
-                      </tr>
+                    </tr>
                     </thead>
                     <tbody>
                         @foreach ( $data as $id => $value )
@@ -37,14 +33,39 @@
                                 <td>{{$value->city}}</td>
                                 <td><a href="{{ route('showsingleuser', $value->id) }}" class="btn btn-primary btn-sm">View User</a></td>
                                 <td><a href="{{ route('getuserdata', $value->id) }}" class="btn btn-warning btn-sm">Update</a></td>
-                                <td><a href="{{ route('deleteuser', $value->id) }}" class="btn btn-danger btn-sm">Delete</a></td>
+                                <td><a href="{{ route('deleteuser', $value->id) }}" onclick="deleteuser()" class="btn btn-danger btn-sm">Delete</a></td>
                             </tr>
                         @endforeach
                     </tbody>
-                  </table>
+                </table>
+                <div class="mt-4">
+                    {{ $data->links() }}
+                </div>
             </div>
         </div>
     </div>
+@endsection
 
-</body>
-</html>
+@section('script')
+    <script>
+        // function deleteuser(){
+        //     Swal.fire({
+        //         title: "Are you sure?",
+        //         text: "You want to delete this user!",
+        //         icon: "warning",
+        //         showCancelButton: true,
+        //         confirmButtonColor: "#3085d6",
+        //         cancelButtonColor: "#d33",
+        //         confirmButtonText: "Yes, delete it!"
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             Swal.fire({
+        //             title: "Deleted!",
+        //             text: "User has been deleted.",
+        //             icon: "success"
+        //             });
+        //         }
+        //     });
+        // }
+    </script>
+@endsection
